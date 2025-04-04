@@ -1,7 +1,7 @@
 import json
 import os
 import math
-from collections import defaultdict, Counter
+from collections import Counter
 from task_2.main import clean_html, tokenize, filter_tokens
 
 # Путь к родительской папке
