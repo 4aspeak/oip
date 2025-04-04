@@ -11,7 +11,7 @@ print(f"Найдено {len(urls)} ссылок.")
 
 
 # Создаем папку для сохранения выкачанных страниц
-output_dir = "выкачка"
+output_dir = "pages"
 os.makedirs(output_dir, exist_ok=True)
 
 # Файл для хранения индекса

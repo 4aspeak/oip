@@ -31,7 +31,11 @@ def filter_tokens(tokens):
             parsed.tag.POS not in {'PREP', 'CONJ', 'PRCL', 'INTJ', 'NUMR'}
         ):
             filtered_tokens.append(token.lower())  # Приводим к нижнему регистру
-    return set(filtered_tokens)  # Убираем дубликаты
+    return filtered_tokens # Убираем дубликаты
+
+
+def delete_duplicates(tokens):
+    return set(tokens)
 
 
 # Функция для группировки токенов по леммам
@@ -49,7 +53,7 @@ if __name__ == "__main__":
     parent_dir = os.path.dirname(os.getcwd())
 
     # Путь к папке с выкачанными страницами
-    input_dir = os.path.join(parent_dir, 'task_1/выкачка')
+    input_dir = os.path.join(parent_dir, 'task_1/pages')
     tokens_dir = "tokens"
     lemmas_dir = "lemmas"
 
@@ -73,6 +77,7 @@ if __name__ == "__main__":
 
         # Фильтрация токенов (включая удаление стоп-слов и дубликатов)
         filtered_tokens = filter_tokens(tokens)
+        filtered_tokens = delete_duplicates(filtered_tokens)
 
         # Группировка токенов по леммам
         lemmas_dict = group_by_lemmas(filtered_tokens)
