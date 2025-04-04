@@ -139,5 +139,5 @@ if __name__ == '__main__':
         with open(output_lemmas_file, "w", encoding="utf-8") as file:
             file.write(result_lemmas)
 
-        print(f"Saved {output_tokens_file} and {output_lemmas_file} for document {doc_id}")
+        print(f"Сохранен {output_tokens_file} and {output_lemmas_file} для документа {doc_id}")
 
