@@ -7,12 +7,12 @@ from sklearn.metrics.pairwise import cosine_similarity
 from task_2.main import tokenize, filter_tokens, delete_duplicates, group_by_lemmas
 
 # Пути к папкам
-HTML_DIR = "../task_1/pages"
-TOKENS_DIR = "../task_2/tokens"
-LEMMAS_DIR = "../task_2/lemmas"
-INVERTED_INDEX_FILE = "../task_3/inverted_index.json"
-TF_IDF_TOKENS_DIR = "../task_4/tokens"
-TF_IDF_LEMMAS_DIR = "../task_4/lemmas"
+HTML_DIR = "task_1/pages"
+TOKENS_DIR = "task_2/tokens"
+LEMMAS_DIR = "task_2/lemmas"
+INVERTED_INDEX_FILE = "task_3/inverted_index.json"
+TF_IDF_TOKENS_DIR = "task_4/tokens"
+TF_IDF_LEMMAS_DIR = "task_4/lemmas"
 
 # Загрузка инвертированного списка
 with open(INVERTED_INDEX_FILE, "r", encoding="utf-8") as f:
@@ -79,6 +79,26 @@ def calculate_relevance(query_vector, tf_idf_data):
 def rank_documents(similarities, top_n=5):
     ranked_docs = sorted(similarities.items(), key=lambda x: x[1], reverse=True)
     return ranked_docs[:top_n]
+
+
+def browse_documents(query, top_n=10):
+    lemmas_dict = preprocess_query(query)
+
+    query_lemmas = list(lemmas_dict.keys())
+
+    # Преобразование запроса в вектор
+    query_vector = query_to_vector(query_lemmas, tf_idf_lemmas)
+
+    # Расчет релевантности
+    similarities = calculate_relevance(query_vector, tf_idf_lemmas)
+
+    # Ранжирование документов
+    ranked_docs = rank_documents(similarities, top_n=10)
+
+    result = []
+    for doc in ranked_docs:
+        result.append({"doc_num": doc[0], "score": round(doc[1], 4)})
+    return result
 
 
 query_examples = [
