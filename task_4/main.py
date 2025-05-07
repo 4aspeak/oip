@@ -118,7 +118,7 @@ if __name__ == '__main__':
 
         # Вывод результатов
         output_tokens_file = os.path.join(tokens_dir, f"tokens_tf_idf_{doc_id}.txt")
-        output_lemmas_file = os.path.join(lemmas_dir, f"lemmas__tf_idf_{doc_id}.txt")
+        output_lemmas_file = os.path.join(lemmas_dir, f"lemmas_tf_idf_{doc_id}.txt")
 
         result_tokens = ""
         result_lemmas = ""
